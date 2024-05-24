@@ -123,7 +123,7 @@ class Vimbot:
         if not os.path.exists(db_file):
             conn = sqlite3.connect(db_file)
             cursor = conn.cursor()
-            cursor.execute("CREATE TABLE elements (xpath TEXT, class_name TEXT)")
+            cursor.execute("CREATE TABLE elements (id INTEGER PRIMARY KEY AUTOINCREMENT, xpath TEXT, class_name TEXT)")
             conn.commit()
 
         conn = sqlite3.connect(db_file)

@@ -16,10 +16,10 @@ for filename in "$agent_prompts_directory"/*.txt; do
         fi
 
         # Call the ground truth (with adblocker)
-        python vimgpt.py "$site" "$line" "true"
+        python main.py "$site" "$line" "true"
 
         # Run with dark patterns
-        python vimgpt.py "$site" "$line" "false"
+        python main.py "$site" "$line" "false"
 
     done < "$filename"
 done
