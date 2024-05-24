@@ -10,6 +10,7 @@ import tldextract
 vimium_path = "./vimium-master"
 adblocker_path = "./adblocker"
 
+
 class Vimbot:
     def __init__(self, headless=False, is_groundtruth=False):
         if is_groundtruth:
@@ -26,7 +27,7 @@ class Vimbot:
                     ignore_https_errors=True,
                 )
             )
-            
+
         else:
             self.context = (
                 sync_playwright()
@@ -44,7 +45,6 @@ class Vimbot:
 
         self.page = self.context.new_page()
         self.page.set_viewport_size({"width": 1080, "height": 720})
-
 
     def inject_xpath_capture_script(self):
         script = """
@@ -113,11 +113,11 @@ class Vimbot:
         data = self.get_clicked_xpaths()
         print(f"Clicked paths: {data}")
 
-        if not hasattr(self, 'domain') or self.domain is None:
+        if not hasattr(self, "domain") or self.domain is None:
             self.domain = self.extract_domain(self.get_current_url())
 
         # By design, I am removing the www. and / from the name of the db
-        db_file = f'db/{self.domain}.db'
+        db_file = f"db/{self.domain}.db"
 
         # Create the database file if it doesn't exist
         if not os.path.exists(db_file):
@@ -132,9 +132,12 @@ class Vimbot:
         if data:
             with conn:
                 for entry in data:
-                    xpath, class_name = entry.split(',')
-                    cursor.execute("INSERT INTO elements (xpath, class_name) VALUES (?, ?)", (xpath, class_name))
-                    
+                    xpath, class_name = entry.split(",")
+                    cursor.execute(
+                        "INSERT INTO elements (xpath, class_name) VALUES (?, ?)",
+                        (xpath, class_name),
+                    )
+
         conn.commit()
         conn.close()
 
@@ -146,11 +149,10 @@ class Vimbot:
         screenshot = Image.open(BytesIO(self.page.screenshot())).convert("RGB")
         return screenshot
 
-
     def get_current_url(self):
         script = "window.location.href;"
         return self.page.evaluate(script)
-    
+
     def get_clicked_xpaths(self):
         script = "window.clickedElementsData;"
         return self.page.evaluate(script)

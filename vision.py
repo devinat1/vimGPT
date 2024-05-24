@@ -57,11 +57,16 @@ def get_actions(screenshot, objective):
                     "role": "system",
                     "content": "You are a helpful assistant to fix an invalid JSON response. You need to fix the invalid JSON response to be valid JSON. You must respond in JSON only with no other fluff or bad things will happen. Do not return the JSON inside a code block.",
                 },
-                {"role": "user", "content": f"The invalid JSON response is: {response.choices[0].message.content}"},
+                {
+                    "role": "user",
+                    "content": f"The invalid JSON response is: {response.choices[0].message.content}",
+                },
             ],
         )
         try:
-            cleaned_json_response = json.loads(cleaned_response.choices[0].message.content)
+            cleaned_json_response = json.loads(
+                cleaned_response.choices[0].message.content
+            )
         except json.JSONDecodeError:
             print("Error: Invalid JSON response")
             return {}

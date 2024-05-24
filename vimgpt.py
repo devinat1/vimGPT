@@ -3,6 +3,7 @@ import vision
 from vimbot import Vimbot
 from sys import argv
 
+
 def main(site, task, is_groundtruth):
     print("Initializing the Vimbot driver...")
     driver = Vimbot(is_groundtruth=is_groundtruth)
@@ -22,6 +23,7 @@ def main(site, task, is_groundtruth):
 
         if driver.perform_action(action):  # returns True if done
             break
+
 
 if __name__ == "__main__":
     site, task, is_groundtruth = argv[1], argv[2], argv[3].lower() == "true"
