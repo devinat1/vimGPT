@@ -9,8 +9,8 @@ def main(site, task, is_groundtruth):
     driver = Vimbot(is_groundtruth=is_groundtruth)
 
     print("Navigating to Google...")
-    driver.navigate("https://www.google.com")
-    objective = f"Go to {site} and do the following task: {task}"
+    driver.navigate(f"http://{site}")
+    objective = f"Do the following task: {task}"
 
     while True:
         time.sleep(1)

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the directory containing the text files
-agent_prompts_directory="../../prompt-creator/prompts-text"
+agent_prompts_directory="../../prompt-creator/real-prompts-text"
 
 # Loop through all .txt files in the directory
 for filename in "$agent_prompts_directory"/*.txt; do
