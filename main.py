@@ -8,9 +8,10 @@ def main(site, task, is_groundtruth):
     print("Initializing the Vimbot driver...")
     driver = Vimbot(is_groundtruth=is_groundtruth)
 
-    print("Navigating to Google...")
+    print(f"Navigating to {site}...")
     driver.navigate(f"http://{site}")
     objective = f"Do the following task: {task}"
+    print(objective)
 
     while True:
         time.sleep(1)
