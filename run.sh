@@ -16,10 +16,10 @@ for filename in "$agent_prompts_directory"/*.txt; do
         fi
 
         # Call the ground truth (with adblocker)
-        python main.py "$site" "$line" "true"
+        python3 main.py "$site" "$line" "true"
 
         # Run with dark patterns
-        python main.py "$site" "$line" "false"
+        python3 main.py "$site" "$line" "false"
 
     done < "$filename"
 done
